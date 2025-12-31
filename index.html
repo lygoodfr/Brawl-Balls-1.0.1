@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Brawl Balls - Зимнее обновление</title>
+    <link rel="stylesheet" href="Brawl%20Balls%201.0.1.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+</head>
+<body>
+<!-- Кнопка для активации звука -->
+<button id="sound-activator" style="position: fixed; bottom: 10px; right: 10px; z-index: 10000; padding: 10px 20px; background: linear-gradient(45deg, #ff8c00, #ff6b00); color: white; border: 2px solid #ffd700; border-radius: 10px; cursor: pointer; font-family: 'Roboto', sans-serif; font-weight: bold;">
+    🔇 Включить звук
+</button>
+
+<!-- Сенсорное управление для мобильных -->
+<div id="mobile-controls">
+    <!-- Джойстик для движения -->
+    <div id="movement-joystick" class="joystick-container">
+        <div class="joystick-base"></div>
+        <div class="joystick-handle"></div>
+    </div>
+
+    <!-- Кнопки для атаки -->
+    <div id="attack-buttons" class="attack-buttons">
+        <button id="attack-btn" class="mobile-btn attack">⚡ АТАКА</button>
+        <button id="super-btn" class="mobile-btn super">🔥 СУПЕР</button>
+    </div>
+</div>
+
+<!-- Экран загрузки -->
+<div id="splash-screen">
+    <h1 id="splash-title">Brawl Balls</h1>
+    <p id="splash-subtitle">Lygoodfr Games️</p>
+</div>
+
+<!-- Главное меню -->
+<div id="main-menu" class="hidden">
+    <div id="main-menu-header">
+        <div id="header-image">
+            <img src="https://sun1-28.userapi.com/s/v1/ig2/XwhEUp0bHvSVIaYZOh-iGknaMOJ9U0Q616mlkWX6TtpAa34YrqMyvAPx4fIq0wm9tVGO0nD4l3NfM67yx3csOzes.jpg?quality=95&as=32x26,48x39,72x58,108x87,160x129,172x139&from=bu&u=dsQox19ul8fX7hfx3GCMkaXw-gS60QEYTJJwCHr9lrk&cs=172x0">
+        </div>
+        <h1>Brawl Balls</h1>
+        <p>Зимнее издание ❄️</p>
+        <div id="total-trophies">
+            Трофеи: <span id="trophies-count">0</span> / 10000<br>
+            Нефриты: <span id="jade-count-display">0</span>
+        </div>
+    </div>
+
+    <div id="name-input-section">
+        <input type="text" id="player-name" placeholder="Введите имя">
+        <button id="accept-name-btn">Принять</button>
+    </div>
+
+    <!-- Выбор персонажа -->
+    <div id="character-select" class="hidden">
+        <h2>Выберите бойца:</h2>
+        <div id="character-buttons">
+            <div class="character-container">
+                <div class="character-image"><img src="https://sun1-21.userapi.com/s/v1/ig2/PVDQeudFHtruHz3xdkhRJ6oPaNAfmZW3sC_s9kE37uhHMssluyWvrj12YJIol6OMtrIy2EhcE3KZqHQI1fybbs8Y.jpg?quality=95&as=32x29,48x43,72x64,108x96,121x108&from=bu&u=fvVoohJruadI_CuSw4fwp4SbaXeNFnmUSldtKfLpZX0&cs=121x0"></div>
+                <button id="shegga-btn" class="character-btn purple">Шегги</button>
+            </div>
+            <div class="character-container">
+                <div class="character-image"><img src="https://sun9-65.userapi.com/s/v1/ig2/juGPYNhetslMY5LNuB-XY9OFtJwMpjsyigk8hHur5nQyt9kvy7GWPXDsWzGGXhuwB2mymHHKwVdHVhCNiEHh_7QG.jpg?quality=95&as=32x30,48x44,72x67,108x100,137x127&from=bu&u=4vpJeQbNZdecxP6QnDdRWXdxwsqqB7NnZMjcpJLQ2MI&cs=137x0"></div>
+                <button id="mortak-btn" class="character-btn red">Мортак</button>
+            </div>
+            <div class="character-container">
+                <div class="character-image"><img src="https://sun1-88.userapi.com/s/v1/ig2/W0eSauXnWZcrCoxXjYyepAJxpyK-Iy6BqeU4jcfnk0NNODhnOkkN6R6SZxYVXOW-L6l7MRM6MIf-sdq2UV3iog8s.jpg?quality=95&as=32x28,48x43,72x64,108x96,143x127&from=bu&u=tk1lWi3XSLtblTcnj4x-3EE0DvrC3KOnh5pKyQXC5dc&cs=143x0"></div>
+                <button id="bully-btn" class="character-btn black">Булли</button>
+            </div>
+            <div class="character-container">
+                <div class="character-image"><img src="https://sun9-8.userapi.com/s/v1/ig2/1RvgF2CjVDsDeuesDfxOTt7xMPEXMXR-BUV484DDcm5L9qR5K0qUrZobnLSyoJPI6XLx2w_5gYOIvirLvfF0h_QO.jpg?quality=95&as=32x27,48x40,72x60,108x90,151x126&from=bu&u=fIBmlAuxJCWg-MJhKqY_WLyUfYXOCnmL9SgYGCAzyaU&cs=151x0"></div>
+                <button id="scrap-btn" class="character-btn orange">Скрэп</button>
+            </div>
+            <div class="character-container">
+                <div class="character-image"><img src="https://sun9-64.userapi.com/s/v1/ig2/7WV2AnVVPvNduW0TpOXo1W3DHnjj_eWy8yhCbuhmvQpUWNZssOYlbwY-HileN1YGgMI2hBVpN4lDjdVh5LcnFvfc.jpg?quality=95&as=32x28,48x42,72x64,108x95,137x121&from=bu&u=7DAybgAqVc5VyILsualmnHOEwGqVhoB_m9cyVcjSu_A&cs=137x0" id="clancy-img"></div>
+                <button id="clancy-btn" class="character-btn yellow">Клэнси 🔒</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Выбор режима игры -->
+    <div id="mode-select" class="hidden">
+        <h2>Выберите режим игры:</h2>
+        <div id="mode-buttons">
+            <button id="solo-mode-btn" class="mode-btn">❄️ Одиночный режим</button>
+            <button id="team-mode-btn" class="mode-btn">⛄ 3 на 3 (Захват алмазов)</button>
+        </div>
+    </div>
+
+    <!-- Кнопки меню -->
+    <div id="menu-buttons">
+        <button id="start-game-btn" class="hidden">🎮 Начать игру</button>
+        <button id="shop-btn">🛒 Магазин</button>
+    </div>
+
+    <!-- Информация об игре -->
+    <div id="game-info">
+        <h4 id="desktop-controls">УПРАВЛЕНИЕ: ХОДИТЬ - СТРЕЛОЧКИ, АТАКА - ПРОБЕЛ, СУПЕРАТАКА - SHIFT</h4>
+        <h4 id="mobile-controls-info" class="hidden">УПРАВЛЕНИЕ: ИСПОЛЬЗУЙТЕ ДЖОЙСТИК ДЛЯ ДВИЖЕНИЯ И КНОПКИ НА ЭКРАНЕ</h4>
+        <h4>ВАЖНО! ЭТА ИГРА ЯВЛЯЕТСЯ ШУТОЧНОЙ И ПОЯВИЛАСЬ СЛУЧАЙНО</h4>
+        <h4><a style="color:#ff8c00" href="https://vk.com/lygoodfr">ВК создателя игры</a></h4>
+    </div>
+</div>
+
+<!-- Магазин -->
+<div id="shop-menu" class="hidden">
+    <div class="shop-container">
+        <h2>🛒 Магазин персонажей</h2>
+        <div id="jade-count" class="jade-display">
+            💎 Нефриты: <span id="jade-count-value">0</span>
+        </div>
+
+        <div class="shop-item">
+            <div class="shop-item-header">
+                <h3>🔥 Клэнси</h3>
+                <div class="shop-character-image">
+                    <img src="https://sun9-64.userapi.com/s/v1/ig2/7WV2AnVVPvNduW0TpOXo1W3DHnjj_eWy8yhCbuhmvQpUWNZssOYlbwY-HileN1YGgMI2hBVpN4lDjdVh5LcnFvfc.jpg?quality=95&as=32x28,48x42,72x64,108x95,137x121&from=bu&u=7DAybgAqVc5VyILsualmnHOEwGqVhoB_m9cyVcjSu_A&cs=137x0" id="shop-clancy-img" alt="Клэнси">
+                </div>
+            </div>
+            <div class="shop-item-details">
+                <p><strong>Мощный боец с оружием на 4 патрона</strong></p>
+                <p>⚔️ Урон: 1800</p>
+                <p>⚡ Особый навык: 4 направленных выстрела</p>
+                <p>🛡️ Супер-атака: Шторм пуль</p>
+                <div class="shop-price">
+                    💎 Цена: <span class="price-value">2500</span> нефритов
+                </div>
+            </div>
+            <div class="shop-item-actions">
+                <button id="buy-clancy-btn" class="shop-item-btn">
+                    Купить Клэнси
+                </button>
+                <div id="clancy-status" class="status-locked">🔒 Заблокирован</div>
+            </div>
+        </div>
+
+        <div class="shop-footer">
+            <p>Нефриты можно получить, побеждая в боях!</p>
+            <button id="close-shop-btn" class="shop-close-btn">Вернуться в меню</button>
+        </div>
+    </div>
+</div>
+
+<!-- Игровой контейнер -->
+<div id="game-container" class="hidden">
+    <canvas id="game-canvas" width="800" height="600"></canvas>
+    <!-- HUD интерфейс -->
+    <div id="game-hud">
+        <div id="player-name-display">❄️ Имя: <span id="current-player-name"></span></div>
+        <div id="player-health">❤️ Здоровье: 4000</div>
+        <div id="player-team" class="hidden">⛄ Команда: <span id="team-color"></span></div>
+        <div id="enemies-remaining">🎯 Бойцов осталось: 9</div>
+        <div id="trophy-count">🏆 Трофеи: 0</div>
+        <div id="diamond-count" class="hidden">💎 Алмазы: <span id="diamonds-collected">0</span></div>
+        <div id="team-score" class="hidden">
+            <div>🔵 Синие: <span id="blue-team-score">0</span>/10</div>
+            <div>🔴 Красные: <span id="red-team-score">0</span>/10</div>
+        </div>
+        <div id="super-cooldown">⚡ Супер готов!</div>
+    </div>
+</div>
+
+<!-- Экран победы -->
+<div id="win-screen" class="hidden">
+    <div class="win-container">
+        <h1>🏆 Вы победили! ❄️</h1>
+        <p id="win-message"></p>
+        <div class="win-rewards">
+            <div class="reward-item">🎖️ +<span id="win-trophies">0</span> трофеев</div>
+            <div class="reward-item">💎 +<span id="win-jade">0</span> нефритов</div>
+        </div>
+        <div class="win-buttons">
+            <button id="play-again-btn-win">🔄 Играть снова</button>
+            <button id="main-menu-btn-win">🏠 В главное меню</button>
+        </div>
+    </div>
+</div>
+
+<!-- Экран поражения -->
+<div id="lose-screen" class="hidden">
+    <div class="lose-container">
+        <h1>💀 Вы проиграли! ☃️</h1>
+        <p id="lose-message"></p>
+        <div class="lose-buttons">
+            <button id="play-again-btn-lose">🔄 Играть снова</button>
+            <button id="main-menu-btn-lose">🏠 В главное меню</button>
+        </div>
+    </div>
+</div>
+
+<!-- Аудио элементы -->
+<audio id="menu-music" loop>
+    <source src="https://zvukipro.com/uploads/files/2020-05/1588412754_laxity-crosswords-by-seraphic-music.mp3" type="audio/mpeg">
+</audio>
+<audio id="shoot-sound">
+    <source src="https://zvukipro.com/uploads/files/2018-12/1545114041_jg-032316-sfx-8-bit-punch.mp3" type="audio/mpeg">
+</audio>
+<audio id="diamond-sound">
+    <source src="https://assets.mixkit.co/sfx/preview/mixkit-unlock-game-notification-253.mp3" type="audio/mpeg">
+</audio>
+<audio id="super-sound">
+    <source src="https://assets.mixkit.co/sfx/preview/mixkit-magic-sparkle-sound-309.mp3" type="audio/mpeg">
+</audio>
+
+<script src="Brawl%20Balls%201.0.1.js"></script>
+</body>
+</html>
